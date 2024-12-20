@@ -3,7 +3,7 @@ from aiogram import Bot, Dispatcher, types
 
 TOKEN = "7569431053:AAFrUDbrplrz2Bh_2ZDBMtJxTeAIVa-MYbM"
 WEBHOOK_PATH = "/webhook"
-WEBHOOK_URL = f"https://https://dks-telegram-webapp-kirills-projects-2f8f2155.vercel.app{WEBHOOK_PATH}"
+WEBHOOK_URL = f"https://dks-telegram-webapp-kirills-projects-2f8f2155.vercel.app{WEBHOOK_PATH}"
 
 bot = Bot(token=TOKEN)
 dp = Dispatcher(bot)
