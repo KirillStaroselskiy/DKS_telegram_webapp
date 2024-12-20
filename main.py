@@ -9,17 +9,20 @@ bot = Bot(token=TOKEN)
 dp = Dispatcher(bot)
 app = FastAPI()
 
-@app.on_event("startup")
-async def startup():
-    await bot.set_webhook(WEBHOOK_URL)
+@app.get("/")
+def read_root():
+    return {"message": "Сервер работает корректно!"}
 
 @app.post(WEBHOOK_PATH)
 async def webhook(request: Request):
-    data = await request.json()
-    telegram_update = types.Update(**data)
-    await dp.process_update(telegram_update)
-    return {"status": "ok"}
+    try:
+        data = await request.json()
+        telegram_update = types.Update(**data)
+        await dp.process_update(telegram_update)
+        return {"status": "ok"}
+    except Exception as e:
+        return {"error": str(e)}
 
 @dp.message_handler(commands=["start"])
 async def start(message: types.Message):
-    await message.answer("Привет! Вебхуки успешно настроены.")
+    await message.answer("Привет! Вебхуки настроены.")
